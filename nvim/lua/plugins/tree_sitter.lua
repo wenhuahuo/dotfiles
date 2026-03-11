@@ -4,7 +4,7 @@ return {
 	build = ":TSUpdate",
     -- event = "VeryLazy",
     opts = {
-        ensure_installed = { "lua", "python" },
+        ensure_installed = { "lua", "python", "latex" },
         highlight = { enable = true },
 		indent = { enable = true }
     },
