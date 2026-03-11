@@ -6,7 +6,14 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    require("nvim-tree").setup {}
+    require("nvim-tree").setup {
+	  filters = {
+		  git_ignored = false,
+	  },
+	  git = {
+		  enable = true,
+	  },
+	}
   end,
   keys = {
 	  { "<leader>nt", "<Cmd>NvimTreeToggle<CR>", desc = "nvim tree toggle", silent = true },
