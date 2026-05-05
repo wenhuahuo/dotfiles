@@ -1,0 +1,7 @@
+{
+  "enableToast": false,
+  "showSessionTokens": true,
+  "enabledProviders": ["openai"],
+  "formatStyle": "singleWindow",
+  "percentDisplayMode": "remaining"
+}
