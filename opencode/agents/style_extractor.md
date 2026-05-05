@@ -4,7 +4,7 @@ mode: subagent
 tools:
   write: true
   edit: true
-  bash: true
+  bash: false
   webfetch: true
   websearch: true
   question: true
@@ -55,7 +55,7 @@ tools:
 
 ## 输出格式
 
-生成 `.ai_context/style_profile.md`，包含：
+在当前项目的 `.ai_context/style_profile.md` 生成风格配置，包含：
 
 ```markdown
 # 风格配置文件
@@ -97,7 +97,7 @@ tools:
 2. 分析上述各维度特征
 3. 提取具体的Do/Don't规则
 4. 生成风格配置文件
-5. 写入 `.ai_context/style_profile.md`
+5. 写入当前项目的 `.ai_context/style_profile.md`
 
 ## 约束
 

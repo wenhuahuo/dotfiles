@@ -7,16 +7,16 @@
   - **Max Context Tokens**: [e.g. 12000]
   - **Target Utilization**: [e.g. 0.7]
   - **Min Useful Tokens**: [e.g. 2000]
-  - **Compression Strategy**: [e.g. bullet_summary, outline_only]
+  - **Compression Strategy**: [e.g. bullet_summary, focused_excerpt]
 - **Evidence Requirements**:
   - **Minimum References**: [e.g. 3]
   - **Evidence Coverage**: [e.g. 0.8]
   - **Citation Style**: [e.g. APA, MLA, IEEE]
   - **Evidence Format**: [e.g. Inline, Footnote, Endnote]
-- **Outline Validation**:
-  - **Word Deviation Tolerance**: [e.g. 0.1]
-  - **Core Point Coverage**: [e.g. 0.9]
+- **Revision Settings**:
   - **Max Revision Rounds**: [e.g. 3]
+  - **Pass Requires No Must-Fix Items**: [e.g. true]
+  - **Auto Revise After Review**: [e.g. true]
 - **Review Settings**:
   - **AI Tone Threshold**: [e.g. 60]
   - **Detection Priority**: [e.g. builtin, third_party]

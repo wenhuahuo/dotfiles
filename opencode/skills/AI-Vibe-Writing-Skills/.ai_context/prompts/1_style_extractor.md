@@ -21,7 +21,7 @@
    - 标点符号的使用偏好（例如是否喜欢用破折号、分号）。
 
 # Output Format
-请生成一份内容直接写入 `style_profile.md` 的内容，格式如下：
+请生成一份内容直接写入当前项目 `.ai_context/style_profile.md` 的内容，格式如下：
 ```markdown
 ## Core Style DNA
 - **Tone**: [描述]

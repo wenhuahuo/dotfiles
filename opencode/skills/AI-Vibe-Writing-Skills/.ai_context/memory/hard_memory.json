@@ -29,6 +29,30 @@
         {
           "term": "Information Density",
           "definition": "Efficiency of conveying effective information; avoid irrelevant history and redundancy."
+        },
+        {
+          "term": "Paradox-First Motivation",
+          "definition": "Start from a widely accepted assumption, then expose a measurable contradiction that the current paradigm cannot explain."
+        },
+        {
+          "term": "Minimal Mechanism Shift",
+          "definition": "A strong paper can introduce a small structural change that directly targets the diagnosed bottleneck."
+        },
+        {
+          "term": "Claim-Evidence Coupling",
+          "definition": "Each central claim should be paired with one focused experiment or ablation that isolates causal effect."
+        },
+        {
+          "term": "Efficiency-Performance Coupling",
+          "definition": "For simple methods, complexity, speed, and memory claims are part of novelty and must be quantified with quality metrics."
+        },
+        {
+          "term": "Boundary-Aware Confidence",
+          "definition": "State limits explicitly; confidence and wording should track evidence coverage and scope."
+        },
+        {
+          "term": "PreNorm Dilution",
+          "definition": "In deep PreNorm stacks, uniform residual accumulation can dilute each layer's relative contribution as depth increases."
         }
       ],
       "units": [],
@@ -40,6 +64,26 @@
         {
           "key": "Submission polish checklist focus",
           "value": "Consistency of symbols/refs, figures cited in order, clear captions, anonymity and page limit checked."
+        },
+        {
+          "key": "Simple-method narrative spine",
+          "value": "Diagnose one structural bottleneck -> propose one minimal change -> validate with controlled ablations and scaling evidence."
+        },
+        {
+          "key": "Reviewer-facing originality framing",
+          "value": "Originality can be a new insight, a cleaner formulation, or a practical capability gain even when the mechanism itself is simple."
+        },
+        {
+          "key": "Evidence ladder for credibility",
+          "value": "Progression should be: contradiction evidence -> mechanism validation -> cross-scale or cross-task confirmation -> explicit limitations."
+        },
+        {
+          "key": "Simplicity claim guardrail",
+          "value": "Do not present simplicity alone as contribution; tie simplicity to measurable improvements in optimization, efficiency, or generalization."
+        },
+        {
+          "key": "NeurIPS review-axis mapping",
+          "value": "Major claims should map explicitly to Quality, Clarity, Significance, and Originality."
         }
       ]
     },

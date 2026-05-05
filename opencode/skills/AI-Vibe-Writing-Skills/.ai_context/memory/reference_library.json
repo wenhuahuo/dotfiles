@@ -1,8 +1,335 @@
 {
-  "sources": [],
+  "sources": [
+    {
+      "id": "ref:2015:resnet",
+      "title": "Deep Residual Learning for Image Recognition",
+      "authors": [
+        "Kaiming He",
+        "Xiangyu Zhang",
+        "Shaoqing Ren",
+        "Jian Sun"
+      ],
+      "year": "2015",
+      "venue": "arXiv / CVPR 2016",
+      "domain": "paper",
+      "tags": [
+        "narrative_style",
+        "simple_method",
+        "motivation_logic",
+        "evidence_driven",
+        "scalability",
+        "optimization_paradox",
+        "residual_learning",
+        "vision"
+      ],
+      "url": "https://arxiv.org/abs/1512.03385",
+      "abstract": "The paper diagnoses a counterintuitive degradation problem in deep plain networks and introduces residual learning as a minimal reformulation that eases optimization while enabling much deeper models.",
+      "key_points": [
+        "The motivation starts from a paradox: deeper plain models can have higher training error than shallower ones.",
+        "The argument separates optimization failure from overfitting by focusing on training error behavior.",
+        "The method is a minimal reparameterization from H(x) to F(x)+x with identity shortcuts and near-zero extra complexity.",
+        "The paper uses controlled plain-vs-residual comparisons to isolate the causal effect of the reformulation.",
+        "Evidence is presented from core classification to transfer tasks, supporting generality rather than a narrow benchmark gain."
+      ],
+      "quotes": [
+        "Is learning better networks as easy as stacking more layers?",
+        "Unexpectedly, such degradation is not caused by overfitting...",
+        "if an identity mapping were optimal, it would be easier to push the residual to zero than to fit an identity mapping by a stack of nonlinear layers."
+      ],
+      "data_points": [
+        "ImageNet top-5 test error: 3.57% (ensemble).",
+        "Depth scaled to 152 layers, about 8x deeper than VGG.",
+        "COCO detection relative improvement reported: 28%.",
+        "ImageNet validation top-1: plain-34 28.54 vs ResNet-34 25.03 (10-crop)."
+      ],
+      "terms": [
+        "degradation problem",
+        "residual mapping",
+        "identity shortcut",
+        "optimization ease",
+        "constructed identity solution"
+      ],
+      "style_notes": [
+        "Open with an accepted belief, then expose a sharp contradiction using one figure-level fact.",
+        "Keep the proposed mechanism compact and mechanically intuitive before giving implementation details.",
+        "Use a construction argument to make the diagnosis feel inevitable rather than speculative.",
+        "Prefer controlled A/B comparisons over broad benchmark lists in the early evidence stage.",
+        "Treat scalability and generalization as consequences of the same core mechanism."
+      ]
+    },
+    {
+      "id": "ref:2021:mae",
+      "title": "Masked Autoencoders Are Scalable Vision Learners",
+      "authors": [
+        "Kaiming He",
+        "Xinlei Chen",
+        "Saining Xie",
+        "Yanghao Li",
+        "Piotr Dollar",
+        "Ross Girshick"
+      ],
+      "year": "2021",
+      "venue": "arXiv / CVPR 2022",
+      "domain": "paper",
+      "tags": [
+        "narrative_style",
+        "simple_method",
+        "motivation_logic",
+        "evidence_driven",
+        "scalability",
+        "self_supervision",
+        "asymmetric_design",
+        "masking_strategy",
+        "vision"
+      ],
+      "url": "https://arxiv.org/abs/2111.06377",
+      "abstract": "The paper revisits masked autoencoding for vision, explains why prior progress lagged NLP, and proposes two simple but high-impact design choices: high masking ratio and asymmetric encoder-decoder computation.",
+      "key_points": [
+        "The motivation is built through cross-domain contrast: NLP success vs vision underperformance.",
+        "The paper explicitly analyzes three differences before proposing design choices (architecture, information density, decoder role).",
+        "The method is intentionally simple and derives directly from the diagnosis rather than heuristic stacking.",
+        "A central win-win claim ties stronger representation learning to lower computation through sparse visible-token encoding.",
+        "Large ablation coverage makes the narrative causal: each design decision has direct evidence."
+      ],
+      "quotes": [
+        "We ask: what makes masked autoencoding different between vision and language?",
+        "a very high masking ratio (e.g., 75%) can achieve a win-win scenario: it optimizes accuracy while allowing the encoder to process only a small portion of patches.",
+        "Simple algorithms that scale well are the core of deep learning."
+      ],
+      "data_points": [
+        "ImageNet-1K fine-tuning accuracy reported: 87.8% with vanilla ViT-Huge.",
+        "Pre-training acceleration reported: 3x or more.",
+        "High masking ratio around 75% is a consistent sweet spot in ablations.",
+        "Transfer results outperform supervised pre-training on multiple downstream tasks."
+      ],
+      "terms": [
+        "asymmetric encoder-decoder",
+        "high masking ratio",
+        "visible patch encoding",
+        "pixel reconstruction target",
+        "scaling behavior"
+      ],
+      "style_notes": [
+        "Use diagnosis-first storytelling: explain why the old approach underdelivers before introducing the method.",
+        "Turn conceptual analysis into a small number of design constraints and implement only those.",
+        "Connect simplicity to system efficiency in the same paragraph as accuracy claims.",
+        "Use ablations as narrative checkpoints to validate each design decision.",
+        "Conclude with a field-level trajectory argument, not only benchmark superiority."
+      ]
+    },
+    {
+      "id": "ref:2025:vggt",
+      "title": "VGGT: Visual Geometry Grounded Transformer",
+      "authors": [
+        "Jianyuan Wang",
+        "Minghao Chen",
+        "Nikita Karaev",
+        "Andrea Vedaldi",
+        "Christian Rupprecht",
+        "David Novotny"
+      ],
+      "year": "2025",
+      "venue": "arXiv / CVPR 2025",
+      "domain": "paper",
+      "tags": [
+        "narrative_style",
+        "simple_method",
+        "motivation_logic",
+        "evidence_driven",
+        "scalability",
+        "neural_first_pipeline",
+        "multi_task_unification",
+        "efficiency",
+        "3d_vision"
+      ],
+      "url": "https://arxiv.org/abs/2503.11651",
+      "abstract": "The paper reframes 3D reconstruction from optimization-heavy geometric pipelines to a feed-forward neural-first system that predicts core 3D attributes jointly and efficiently.",
+      "key_points": [
+        "The motivation emphasizes workflow complexity and compute cost in traditional geometry-centric pipelines.",
+        "A direct question anchors the narrative: can reconstruction be solved feed-forward without heavy post-optimization?",
+        "The method keeps architecture relatively standard and shifts novelty to task unification and training scale.",
+        "The claim combines direct usability and speed with strong quality, then extends to optional optimization stacking.",
+        "The writing repeatedly frames simplicity as practical leverage, not reduced ambition."
+      ],
+      "quotes": [
+        "we ask if, finally, 3D tasks can be solved directly by a neural network, eschewing geometry post-processing almost entirely.",
+        "it often outperforms optimization-based alternatives even without further processing.",
+        "Our simple, neural-first approach departs from traditional visual geometry-based methods, which rely on optimization and post-processing..."
+      ],
+      "data_points": [
+        "Inference runtime claim: under one second for reconstruction.",
+        "Input scale claim: one, a few, or hundreds of views in one model.",
+        "State-of-the-art results reported across camera pose, depth, point map, and tracking tasks.",
+        "Further gains shown when combining predictions with BA post-processing."
+      ],
+      "terms": [
+        "neural-first reconstruction",
+        "post-processing elimination",
+        "shared backbone for multi-3D tasks",
+        "direct usability",
+        "single-forward-pass reconstruction"
+      ],
+      "style_notes": [
+        "Frame the old pipeline as a systems bottleneck, then propose a cleaner end-to-end path.",
+        "Use simple architecture language to lower skepticism about implementation risk.",
+        "Present speed and accuracy as co-primary outcomes, not a tradeoff.",
+        "Show that a unified model can replace specialized stacks while remaining extensible.",
+        "Close with practical adoption signals (runtime, code release, downstream utility)."
+      ]
+    },
+    {
+      "id": "ref:2026:attnres",
+      "title": "Attention Residuals",
+      "authors": [
+        "Kimi Team"
+      ],
+      "year": "2026",
+      "venue": "arXiv",
+      "domain": "paper",
+      "tags": [
+        "narrative_style",
+        "simple_method",
+        "motivation_logic",
+        "evidence_driven",
+        "scalability",
+        "depth_attention",
+        "sequence_depth_duality",
+        "infrastructure",
+        "llm_architecture"
+      ],
+      "url": "https://arxiv.org/abs/2603.15031",
+      "abstract": "The paper identifies depth-wise information dilution in standard residual accumulation and introduces a selective attention-based residual mechanism, with a blockwise variant that preserves scalability in real training systems.",
+      "key_points": [
+        "The motivation targets an under-emphasized bottleneck: fixed uniform depth accumulation in residual paths.",
+        "A formal unrolling argument and PreNorm dynamics are used to justify why layer contributions get diluted.",
+        "The method is minimal at parameter level (one pseudo-query per layer) but high-leverage at information routing level.",
+        "Scalability constraints are addressed explicitly via Block AttnRes and infrastructure co-design.",
+        "The evidence path goes from scaling laws and ablations to a large-scale pretrain deployment."
+      ],
+      "quotes": [
+        "residuals define how information aggregates across depth.",
+        "AttnRes goes a step further and replaces depth-wise recurrence with direct cross-layer attention...",
+        "Inspired by the duality between sequence and depth, we introduce AttnRes..."
+      ],
+      "data_points": [
+        "Large-scale integration reported on a 48B total / 3B activated architecture with 1.4T pre-training tokens.",
+        "Block AttnRes with about 8 blocks is reported to recover most gains of full AttnRes.",
+        "Inference latency overhead is reported as less than 2% under typical workloads.",
+        "Scaling-law experiments show consistent gains across model sizes."
+      ],
+      "terms": [
+        "PreNorm dilution",
+        "depth-wise selective aggregation",
+        "Attention Residuals",
+        "Block AttnRes",
+        "sequence-depth duality"
+      ],
+      "style_notes": [
+        "Diagnose a hidden but structural bottleneck before proposing any new module.",
+        "Use a unifying conceptual lens (duality) to make the method feel inevitable.",
+        "Keep the core mechanism compact, then spend narrative budget on making it deployable.",
+        "Pair algorithmic novelty with infrastructure practicality in the same argument chain.",
+        "Validate at three levels: mechanism ablation, scaling trend, and full-system benchmark impact."
+      ]
+    }
+  ],
   "index": {
-    "by_domain": {},
-    "by_tag": {},
-    "by_year": {}
+    "by_domain": {
+      "paper": [
+        "ref:2015:resnet",
+        "ref:2021:mae",
+        "ref:2025:vggt",
+        "ref:2026:attnres"
+      ]
+    },
+    "by_tag": {
+      "3d_vision": [
+        "ref:2025:vggt"
+      ],
+      "asymmetric_design": [
+        "ref:2021:mae"
+      ],
+      "depth_attention": [
+        "ref:2026:attnres"
+      ],
+      "efficiency": [
+        "ref:2025:vggt"
+      ],
+      "evidence_driven": [
+        "ref:2015:resnet",
+        "ref:2021:mae",
+        "ref:2025:vggt",
+        "ref:2026:attnres"
+      ],
+      "infrastructure": [
+        "ref:2026:attnres"
+      ],
+      "llm_architecture": [
+        "ref:2026:attnres"
+      ],
+      "masking_strategy": [
+        "ref:2021:mae"
+      ],
+      "motivation_logic": [
+        "ref:2015:resnet",
+        "ref:2021:mae",
+        "ref:2025:vggt",
+        "ref:2026:attnres"
+      ],
+      "multi_task_unification": [
+        "ref:2025:vggt"
+      ],
+      "narrative_style": [
+        "ref:2015:resnet",
+        "ref:2021:mae",
+        "ref:2025:vggt",
+        "ref:2026:attnres"
+      ],
+      "neural_first_pipeline": [
+        "ref:2025:vggt"
+      ],
+      "optimization_paradox": [
+        "ref:2015:resnet"
+      ],
+      "residual_learning": [
+        "ref:2015:resnet"
+      ],
+      "scalability": [
+        "ref:2015:resnet",
+        "ref:2021:mae",
+        "ref:2025:vggt",
+        "ref:2026:attnres"
+      ],
+      "self_supervision": [
+        "ref:2021:mae"
+      ],
+      "sequence_depth_duality": [
+        "ref:2026:attnres"
+      ],
+      "simple_method": [
+        "ref:2015:resnet",
+        "ref:2021:mae",
+        "ref:2025:vggt",
+        "ref:2026:attnres"
+      ],
+      "vision": [
+        "ref:2015:resnet",
+        "ref:2021:mae"
+      ]
+    },
+    "by_year": {
+      "2015": [
+        "ref:2015:resnet"
+      ],
+      "2021": [
+        "ref:2021:mae"
+      ],
+      "2025": [
+        "ref:2025:vggt"
+      ],
+      "2026": [
+        "ref:2026:attnres"
+      ]
+    }
   }
 }

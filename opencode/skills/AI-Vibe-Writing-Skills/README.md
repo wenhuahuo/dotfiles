@@ -9,8 +9,8 @@
 ## 🌟 What's New / 更新日志
 
 **v1.4 - Multi-Agent Writing Skill / 多智能体协作写作**
-Added outline-manager, content-writer, content-review agents with a coordinator loop.
-新增大纲管理、写作、检阅智能体与流程协调器，完成写作闭环。
+Added content-writer and content-review agents with a coordinator loop; outline-manager is optional when explicitly requested.
+新增写作、检阅智能体与流程协调器，完成写作-检阅-修订闭环；大纲管理仅在明确要求时使用。
 
 **v1.3 - Writing Knowledge Bases / 写作知识库**
 Added curated writing knowledge bases for grant proposals, papers, and theses.
@@ -57,26 +57,22 @@ Added a dedicated module to detect and correct grammatical errors and typos in b
 **原理**: 针对不同写作类型沉淀可复用规范，按领域检索并持续迭代。
 
 ### 🤝 MULTI-AGENT COLLABORATION / 多智能体协作写作
-**Outline Manager**: Enforces outline constraints and validates outputs.  
-**Writer**: Drafts and revises under outline and memory constraints.  
+**Writer**: Drafts and revises under task, style, and memory constraints.  
 **Reviewer**: Detects AI tone and integrates multi-platform checks.  
-**原理**: 通过大纲约束→内容创作→AI 味检测→多平台核验实现闭环。
+**Optional Outline Manager**: Used only when the user explicitly asks for a full outline or chapter structure.  
+**原理**: 通过内容创作→AI 味检测→修订复检→多平台核验实现闭环。
 
 ### ⚙️ CUSTOMIZATION / 自定义规范
 **Context**: Adapts to specific audiences (e.g., Technical, General) and topics.  
 **Outline**: Manages structure for long-form content.  
-**原理**: 自动适配目标受众和主题，支持长文大纲管理。
+**原理**: 自动适配目标受众和主题；仅在明确要求时支持长文大纲管理。
 
 
 
 ### Quick Trigger Examples / 快速触发示例
-> "Use outline-manager-agent to generate a 3-level outline for topic X."
+> "Use content-writer-agent to draft this paragraph in my project style."
 > 
-> “调用大纲管理智能体，为主题 X 生成三级大纲。”
-
-> "Use content-writer-agent to draft section 2 based on outline-001."
-> 
-> “调用写作智能体，基于 outline-001 写第 2 节。”
+> “调用写作智能体，按我的项目风格写这一段。”
 
 > "Use content-review-agent to review the latest draft and report AI tone."
 > 
@@ -110,9 +106,9 @@ Choose the right agent for your task. You don't always need all of them.
 | Goal / 目标 | Recommended Agents / 推荐智能体 | Why / 原因 |
 | :--- | :--- | :--- |
 | **Simple Writing** / 简单写作 | **Content Writer** | Direct drafting with style mimicry. <br> 直接生成，保留风格。 |
-| **Long-form Content** / 长文创作 | **Outline Manager** + **Content Writer** | Ensures logical structure and flow. <br> 保证长文结构逻辑严密。 |
+| **Paragraph/Section Writing** / 段落或小节写作 | **Content Writer** + **Content Review** | Draft, review, and revise without forcing an outline. <br> 不强制大纲，直接写作、检阅并修订。 |
 | **Quality Assurance** / 质量把控 | **Content Writer** + **Content Review** | Checks for AI tone and plagiarism. <br> 检测 AI 味和查重。 |
-| **Full Automation** / 全自动闭环 | **Workflow Coordinator** | Orchestrates the full loop (Outline → Write → Review). <br> 自动调度全流程。 |
+| **Full Automation** / 全自动闭环 | **Workflow Coordinator** | Orchestrates the full loop (Write → Review → Revise). <br> 自动调度写作、检阅与修订闭环。 |
 
 ### Step 2: Style Extraction / 提取风格
 **Required for first-time use.**
@@ -197,13 +193,13 @@ Configure in `.ai_context/custom_specs.md`.
 在 `.ai_context/custom_specs.md` 中配置。
 
 ### Step 8: Multi-Agent Collaboration / 多智能体协作
-**Agents: Workflow Coordinator / Outline Manager / Content Writer / Content Review**
+**Agents: Workflow Coordinator / Content Writer / Content Review**
 Trigger the multi-agent loop and let the system orchestrate writing.
 启动多智能体闭环并交由系统协调：
 
-> "Use outline-manager-agent + content-writer-agent + content-review-agent to draft section 2."
+> "Use workflow-coordinator + content-writer-agent + content-review-agent to draft and revise this section."
 >
-> "调用大纲管理、写作、检阅三智能体完成第 2 章。"
+> "调用流程协调、写作、检阅智能体完成这一节的写作和修订。"
 
 ### Step 9: API Key Configuration / API Key 配置
 **Agent: Content Review**
@@ -239,7 +235,7 @@ The system is pre-configured to support **GPTZero**, **Copyleaks**, and other de
   - `style_profile.md`: Your style fingerprint.
   - `error_log.md`: Your negative constraints.
   - `custom_specs.md`: User-defined writing context.
-  - `outline_template.md`: Template for structuring content.
+  - `outline_template.md`: Optional template for explicit outline requests.
   - `reference_learning.md`: Reference learning pipeline.
   - `memory/hard_memory.json`: Domain hard memory (terms, units, key values).
   - `memory/soft_memory.json`: Domain soft memory (preferences, phrasing, tone).
@@ -270,8 +266,8 @@ graph TD
     
     C --> E[Style Profile
     <br />风格库]
-    D --> F[Outline Template
-    <br />大纲模板]
+    D --> F[Project Context
+    <br />项目上下文]
     
     A --> G{存储阶段 / Storage Phase}
     G --> E
@@ -320,8 +316,8 @@ graph TD
 This tutorial shows how to configure each agent role using existing prompt and spec files.  
 以下教程演示如何通过现有的 prompt 与规范文件配置各智能体角色。
 
-### 1) Outline Manager Agent / 大纲管理智能体
-**Purpose / 作用**: Create, store, and validate outlines. / 创建、存储并校验大纲。  
+### 1) Optional Outline Manager Agent / 可选大纲管理智能体
+**Purpose / 作用**: Create, store, and validate outlines only when explicitly requested. / 仅在明确要求时创建、存储并校验大纲。  
 **Where to edit / 编辑位置**:
 - `.ai_context/prompts/6_outline_manager_agent.md`
 - `.ai_context/outline_template.md`
@@ -335,7 +331,7 @@ This tutorial shows how to configure each agent role using existing prompt and s
 3. **Configure Storage**: (Optional) In `6_outline_manager_agent.md`, modify the outline storage key format if needed.
 
 ### 2) Content Writer Agent / 写作智能体
-**Purpose / 作用**: Draft and revise content based on outline and memory. / 按大纲与记忆写作与修订。  
+**Purpose / 作用**: Draft and revise content based on the user task, local context, style, and memory. / 按用户任务、局部上下文、风格与记忆写作和修订。  
 **Where to edit / 编辑位置**:
 - `.ai_context/prompts/7_content_writer_agent.md`
 - `.ai_context/custom_specs.md`
@@ -379,7 +375,7 @@ This tutorial shows how to configure each agent role using existing prompt and s
 2. In `custom_specs.md`, align coordination rules with your writing cadence.
 
 ## 🧭 Multi-Agent Skill IDs / 多智能体 Skill ID
-- **outline-manager-agent**
+- **outline-manager-agent** (optional / 可选)
 - **content-writer-agent**
 - **content-review-agent**
 - **workflow-coordinator**
@@ -391,15 +387,13 @@ graph TD
     Start([Start / 开始]) --> Coordinator[Workflow Coordinator
     <br />流程协调器]
     
-    Coordinator -->|1. Create/Load| OutlineMgr[Outline Manager
-    <br />大纲管理智能体]
-    OutlineMgr -->|Save to Memory| HardMem[(Hard Memory
-    <br />硬性记忆)]
-    OutlineMgr -->|Valid Outline| Coordinator
-    
-    Coordinator -->|2. Draft Section| Writer[Content Writer
+    Coordinator -->|1. Load Project Context| Context[(Project .ai_context
+    <br />项目级上下文)]
+    Context --> Coordinator
+
+    Coordinator -->|2. Draft/Revise Section| Writer[Content Writer
     <br />写作智能体]
-    HardMem -.->|Read Outline| Writer
+    Context -.->|Style + Memory| Writer
     Writer -->|Draft| Coordinator
     
     Coordinator -->|3. Review| Reviewer[Content Review
@@ -412,7 +406,7 @@ graph TD
     Decision -->|No: Revise / 修订| Writer
     
     style Coordinator fill:#f96,stroke:#333,stroke-width:2px
-    style OutlineMgr fill:#9cf,stroke:#333,stroke-width:2px
+    style Context fill:#9cf,stroke:#333,stroke-width:2px
     style Writer fill:#9f9,stroke:#333,stroke-width:2px
     style Reviewer fill:#fc9,stroke:#333,stroke-width:2px
 ```

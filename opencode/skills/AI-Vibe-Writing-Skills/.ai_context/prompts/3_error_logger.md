@@ -1,5 +1,5 @@
 # Context
-你刚才的生成中出现了一个我不满意的点。我需要你将这个错误转化为一条永久性的“负面约束规则”，存入 `error_log.md`。
+你刚才的生成中出现了一个我不满意的点。我需要你将这个错误转化为一条永久性的“负面约束规则”，存入当前项目 `.ai_context/error_log.md`。
 
 # My Correction
 [在此处输入你的修改意见，例如：你刚才用了“In summary”，我写论文从来不用这个词，我习惯用“Conclusion”。或者：不要把“dataset”写成“data set”。]

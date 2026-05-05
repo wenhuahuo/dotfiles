@@ -11,19 +11,19 @@ license: Proprietary. LICENSE.txt has complete terms
 ## 1. 系统级写作流程（必须遵循）
 
 工作流来自系统规则，贯穿所有写作任务：
-1. **分析**：读取 `style_profile.md` 与 `custom_specs.md`，明确语气、主题、受众与约束。
+1. **分析**：只在当前项目需要写作时读取或创建项目级 `.ai_context/`，并读取 `style_profile.md` 与 `custom_specs.md`，明确语气、主题、受众与约束。
 2. **召回**：读取 `error_log.md` 与长期记忆，避免已知错误并对齐领域术语。
-3. **规划**：对长文或复杂任务先出大纲（参考 `outline_template.md`）。
-4. **写作**：按风格与约束生成内容。
-5. **自检**：排查 AI 味、错题本违例、语法问题。
-6. **迭代**：根据反馈更新错题本与长期记忆。
+3. **写作**：默认按段落、片段或局部任务生成内容，不主动规划大纲。
+4. **自检**：排查 AI 味、错题本违例、语法问题。
+5. **检阅**：由独立检阅模块判断通过、必须修订或重写。
+6. **修订**：如存在必须修改项，调用写作模块直接修订正文，直到通过或达到最大修订轮次。
+7. **迭代**：根据用户确认更新错题本与长期记忆。
 
 参考配置入口：
 - `.traerules`
 - `.ai_context/style_profile.md`
 - `.ai_context/error_log.md`
 - `.ai_context/custom_specs.md`
-- `.ai_context/outline_template.md`
 - `.ai_context/memory/hard_memory.json`
 - `.ai_context/memory/soft_memory.json`
 
@@ -37,10 +37,10 @@ license: Proprietary. LICENSE.txt has complete terms
 - **长期记忆管家**（5_long_term_memory）：将事实与偏好写入硬/软记忆并按领域检索。
 
 ### 多智能体模块
-- **大纲管理智能体**（6_outline_manager_agent）：创建/校验/存储大纲并输出结构化校验结果。
-- **写作智能体**（7_content_writer_agent）：在大纲与记忆约束下生成与修订内容。
+- **写作智能体**（7_content_writer_agent）：在用户任务、局部上下文与记忆约束下生成与修订内容。
 - **检阅智能体**（8_content_review_agent）：AI 味检测与外部查重能力整合（如 GPTZero）。
-- **流程协调器**（9_workflow_coordinator）：串联大纲 → 写作 → 检阅的闭环流程。
+- **流程协调器**（9_workflow_coordinator）：串联写作 → 检阅 → 修订的闭环流程。
+- **大纲管理智能体**（6_outline_manager_agent）：默认工作流不调用；仅在用户明确要求大纲或整篇结构规划时作为可选能力使用。
 
 Prompts 位置：
 - `.ai_context/prompts/1_style_extractor.md`
@@ -48,19 +48,22 @@ Prompts 位置：
 - `.ai_context/prompts/3_error_logger.md`
 - `.ai_context/prompts/4_grammar_checker.md`
 - `.ai_context/prompts/5_long_term_memory.md`
-- `.ai_context/prompts/6_outline_manager_agent.md`
 - `.ai_context/prompts/7_content_writer_agent.md`
 - `.ai_context/prompts/8_content_review_agent.md`
 - `.ai_context/prompts/9_workflow_coordinator.md`
+
+可选 Prompt：
+- `.ai_context/prompts/6_outline_manager_agent.md`：仅在用户明确要求大纲或整篇结构规划时使用。
 
 ## 3. 写作注意事项（高优先级规则）
 
 1. **必须读取风格与错题本**：避免风格漂移与历史错误复现。
 2. **避免“AI 味”高频词**：如过度套路化的词组或机械性转折。
-3. **长文先出大纲**：结构优先，再落地内容。
+3. **默认不出大纲**：除非用户明确要求大纲、章节结构或整篇规划。
 4. **严格对齐长期记忆**：术语、单位、关键事实以硬记忆为准。
 5. **语法检查只做纠错**：除非用户明确要求重写。
 6. **检阅阶段独立执行**：AI 味检测与查重输出需独立报告。
+7. **有必须修改项就必须修订**：不能只返回建议而不调用写作模块改正文。
 
 ## 4. 知识库与参考文献学习（推荐流程）
 
@@ -70,7 +73,7 @@ Prompts 位置：
 2. **提供参考文献要点**：用摘要、要点或引用列表提供给系统。
 3. **沉淀稳定事实**：术语、单位、结论写入硬记忆。
 4. **沉淀写作偏好**：措辞、语气、表达习惯写入软记忆。
-5. **大纲先行**：基于知识库与参考要点先出大纲，再写正文。
+5. **片段先行**：默认围绕用户指定段落或局部任务写作；只有用户要求整篇规划时才生成大纲。
 
 ### 参考文献学习建议
 - 先整理“参考文献摘要/关键论点/可引用结论”。
@@ -89,7 +92,6 @@ Prompts 位置：
 - `style_profile.md`：个人风格指纹
 - `error_log.md`：禁忌清单（负面约束）
 - `custom_specs.md`：主题/受众/检测/阈值等全局配置
-- `outline_template.md`：大纲结构模板
 - `hard_memory.json` / `soft_memory.json`：长期记忆存储
 - `reference_library.json`：参考文献库
 - `reference_learning.md`：参考文献学习流程

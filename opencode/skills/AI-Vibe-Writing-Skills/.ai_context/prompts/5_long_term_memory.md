@@ -6,7 +6,7 @@
 2. **柔性记忆 (Soft Memory)**: 用户偏好、措辞、语气、表达习惯等允许适度调整的信息。
 
 # Storage
-长期记忆存放于以下文件，并按“领域”分类：
+长期记忆存放于当前项目的以下文件，并按“领域”分类；不要写入 skill 安装目录中的模板记忆：
 - `.ai_context/memory/hard_memory.json`
 - `.ai_context/memory/soft_memory.json`
 

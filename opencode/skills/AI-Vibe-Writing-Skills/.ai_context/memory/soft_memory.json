@@ -15,18 +15,32 @@
         "Explain concepts close to where they appear to reduce confusion time.",
         "Prioritize logical coherence over ornate connectives.",
         "State core novelty early and align experiments with contribution claims.",
-        "Keep captions self-explanatory and place key explanations near figures/tables."
+        "Keep captions self-explanatory and place key explanations near figures/tables.",
+        "Lead with one concrete contradiction or failure mode before introducing the method.",
+        "Prefer minimal-change explanations: state what stays unchanged and what single mechanism changes.",
+        "Couple each major claim with one direct evidence pointer (ablation, controlled comparison, or scaling trend).",
+        "Integrate efficiency evidence (time, memory, compute, or latency) into the core contribution narrative.",
+        "Use cross-scale validation: mechanism ablation first, then larger-scale or downstream confirmation.",
+        "State scope boundaries explicitly to preempt reviewer skepticism."
       ],
       "phrasing": [
-        "Use reviewer-facing language: novelty, rigor, reproducibility, and evidence."
+        "Use reviewer-facing language: novelty, rigor, reproducibility, and evidence.",
+        "Use logic-forward progression language: problem -> contradiction -> mechanism -> evidence -> scope.",
+        "Use terms like 'minimal change', 'drop-in replacement', and 'consistent across scales' only when directly supported by results."
       ],
       "tone": [
-        "Objective, rigorous, and concise."
+        "Objective, rigorous, and concise.",
+        "Calm, skeptical, and proof-oriented; confidence increases only after evidence is shown.",
+        "Simple-but-rigorous: avoid rhetorical flourish and prioritize causal explanation."
       ],
       "avoid": [
         "Overclaiming results without evidence or citations.",
         "Bullet-list paragraphs when prose is required.",
-        "Overused AI-sounding words (e.g., delve, leverage, tapestry)."
+        "Overused AI-sounding words (e.g., delve, leverage, tapestry).",
+        "Method-first openings that skip the motivating contradiction.",
+        "Novelty inflation that labels incremental mechanisms as paradigm shifts without evidence.",
+        "Benchmark stacking without linking each result to a specific contribution claim.",
+        "Simplicity claims without quantified compute, memory, or latency context."
       ]
     },
     "thesis": {
